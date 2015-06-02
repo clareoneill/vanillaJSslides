@@ -9,19 +9,21 @@ var Slider = (function () {
 		this.arrows = document.querySelectorAll( '.arrows svg' );
 		this.w = window;
 		this.baseURL = this.w.location.protocol + '//' + this.w.location.host + this.w.location.pathname;
-		ARROWS = {
+    this.timer = 0;
+		this.ARROWS = {
 			LEFT: this.par.querySelector( '.left' ),
 			RIGHT: this.par.querySelector( '.right' )
 		};
-		CLASSLIST = {
+		this.CLASSLIST = {
 			ACTIVE: 'active'
 		};
-		KEY = {
+		this.KEY = {
 		 	LEFT: 37,
 		 	RIGHT: 39
 		};
 
 		this.init();
+    this.winResize();
 	}
   
   Slider.prototype.init = function () {
@@ -31,8 +33,8 @@ var Slider = (function () {
   			slideHeights = [];
 
   	/* 	find all height of the slide's contents div  */
-  	for( var i = 0; i < this.slideContent.length; i++ ) {
-  		var slideHeight = this.slideContent[i].offsetHeight;
+  	for( var i = 0, slideHeight, slideOffset = 0; i < this.slideContent.length; i++ ) {
+  		slideHeight = this.slideContent[i].offsetHeight;
   		/* 	if the slide content height is less than the window height,
   			 	set slide height and data-height attribute equal to the window height
   			 	push to slideHeights  */
@@ -49,13 +51,12 @@ var Slider = (function () {
   		}
 
   		/*	add up the slide heights */
- 			var slideOffset = 0;
-  		for( var k = 0; k < slideHeights.length; k++ ) {
-  			slideOffset += slideHeights[k];
+  		for( var k = 0, slideDiff = 0; k < slideHeights.length; k++ ) {
+  			slideDiff += slideHeights[k];
   		}
 
   		/*	find the offset of each slide, set data-offset for each slide */
-  		slideOffset = slideOffset - slideHeights[i];
+  		slideOffset = slideDiff - slideHeights[i];
   		this.slides[i].setAttribute( 'data-offset', slideOffset );
   	}
 
@@ -63,6 +64,17 @@ var Slider = (function () {
   	this.par.style.height = slideHeights[0] + 'px';
 
   	this.setSlideParam();
+  };
+
+  Slider.prototype.winResize = function () {
+    var self = this;
+    /*  call init() 300ms after resize ends */
+    this.w.addEventListener('resize', function() {
+      if (this.timer) {
+        clearTimeout(this.timer);
+      }
+      this.timer = setTimeout(self.init(), 300);
+    });
   };
 
   Slider.prototype.setSlideParam = function () {
@@ -74,7 +86,7 @@ var Slider = (function () {
   	if( slideParam === '' ) {
   		currSlide = this.slides[ 0 ];
   		this.w.history.replaceState({}, '', this.baseURL+'?slide=1');
-  		currSlide.classList.add( CLASSLIST.ACTIVE );
+  		currSlide.classList.add( this.CLASSLIST.ACTIVE );
   	/*	else set that slide to active */
   	} else {
   		currSlide = this.slides[ slideParam - 1 ];
@@ -92,28 +104,28 @@ var Slider = (function () {
   	/*	get current slide count */
   	var self = this,
         slideTotal = this.slides.length,
-        currSlideCount = currSlide.getAttribute('data-count'),
+        currSlideCount = parseInt(currSlide.getAttribute('data-count')),
         nextSlideCount;
 
   	/*	show arrows depending on what the current slide is */
-  	if( currSlideCount == 1 ) {
-  		ARROWS.LEFT.classList.remove( CLASSLIST.ACTIVE );
-  		ARROWS.RIGHT.classList.add( CLASSLIST.ACTIVE );
-  	} else if( currSlideCount == this.slides.length ) {
-  		ARROWS.LEFT.classList.add( CLASSLIST.ACTIVE );
-  		ARROWS.RIGHT.classList.remove( CLASSLIST.ACTIVE );
+  	if( currSlideCount === 1 ) {
+  		this.ARROWS.LEFT.classList.remove( this.CLASSLIST.ACTIVE );
+  		this.ARROWS.RIGHT.classList.add( this.CLASSLIST.ACTIVE );
+  	} else if( currSlideCount === this.slides.length ) {
+  		this.ARROWS.LEFT.classList.add( this.CLASSLIST.ACTIVE );
+  		this.ARROWS.RIGHT.classList.remove( this.CLASSLIST.ACTIVE );
   	} else {
-  		ARROWS.LEFT.classList.add( CLASSLIST.ACTIVE );
-  		ARROWS.RIGHT.classList.add( CLASSLIST.ACTIVE );
+  		this.ARROWS.LEFT.classList.add( this.CLASSLIST.ACTIVE );
+  		this.ARROWS.RIGHT.classList.add( this.CLASSLIST.ACTIVE );
   	}
 
 	  /*  on keydown, set set nextSlideCount and call animateSlides() */
     document.onkeydown = function(e) {
-      if( e.keyCode == KEY.LEFT || e.which == KEY.LEFT ) {
+      if( e.keyCode == self.KEY.LEFT || e.which == self.KEY.LEFT ) {
         if( currSlideCount > 1 ) {
           self.moveLeft( currSlideCount );
         }
-      } else if( e.keyCode == KEY.RIGHT || e.which == KEY.RIGHT ) {
+      } else if( e.keyCode == self.KEY.RIGHT || e.which == self.KEY.RIGHT ) {
         if( currSlideCount < slideTotal ) {
           self.moveRight( currSlideCount );
         }
@@ -138,14 +150,14 @@ var Slider = (function () {
   Slider.prototype.moveLeft = function ( currSlideCount ) {
     /*  get nextSlideCount, animate slides left */
     nextSlideCount = parseInt(currSlideCount) - 1;
-    this.slides[ currSlideCount - 1 ].classList.remove( CLASSLIST.ACTIVE );
+    this.slides[ currSlideCount - 1 ].classList.remove( this.CLASSLIST.ACTIVE );
     this.animateSlides( nextSlideCount );
   };
 
   Slider.prototype.moveRight = function ( currSlideCount ) {
     /*  get nextSlideCount, animate slides right */
     nextSlideCount = parseInt(currSlideCount) + 1;
-    this.slides[ currSlideCount - 1 ].classList.remove( CLASSLIST.ACTIVE );
+    this.slides[ currSlideCount - 1 ].classList.remove( this.CLASSLIST.ACTIVE );
     this.animateSlides( nextSlideCount );
   };
 
@@ -168,10 +180,6 @@ var Slider = (function () {
 }());
 
 document.addEventListener( 'DOMContentLoaded', function() {
-	var slider = new Slider( '.slideshow' );
-});
-
-window.addEventListener('resize', function() {
 	var slider = new Slider( '.slideshow' );
 });
 
