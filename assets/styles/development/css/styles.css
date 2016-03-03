@@ -2,7 +2,19 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
   margin: 0;
   padding: 0;
   border: 0;
@@ -11,16 +23,23 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   vertical-align: baseline; }
 
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
   display: block; }
 
 body {
   line-height: 1; }
 
-a, a:active, a:focus, button, button:active, button:focus {
+a,
+a:active,
+a:focus,
+button,
+button:active,
+button:focus {
   outline: 0; }
 
-input::-moz-focus-inner, button::-moz-focus-inner {
+input::-moz-focus-inner,
+button::-moz-focus-inner {
   border: 0; }
 
 ol, ul {
@@ -29,7 +48,8 @@ ol, ul {
 blockquote, q {
   quotes: none; }
 
-blockquote:before, blockquote:after, q:before, q:after {
+blockquote:before, blockquote:after,
+q:before, q:after {
   content: '';
   content: none; }
 
@@ -86,17 +106,16 @@ b, strong {
 i, em {
   font-style: italic; }
 
-a:link, a:visited, a.active {
+a:link,
+a:visited,
+a.active {
   text-decoration: none;
   color: #fff;
   border-bottom: 3px solid #fff;
-  -webkit-transition: all 300ms ease;
-  -moz-transition: all 300ms ease;
-  -ms-transition: all 300ms ease;
-  -o-transition: all 300ms ease;
   transition: all 300ms ease; }
 
-a:hover, a:focus {
+a:hover,
+a:focus {
   border-bottom: 3px solid #66f; }
 
 ol, ul {
@@ -110,15 +129,10 @@ ol, ul {
 .slideshow {
   background: #ff006c;
   /* Old browsers */
-  background: -moz-linear-gradient(top, #ff006c 0%, #7d2ded 50%, #25b7c4 100%);
   /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ff006c), color-stop(50%, #7d2ded), color-stop(100%, #25b7c4));
   /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #ff006c 0%, #7d2ded 50%, #25b7c4 100%);
   /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, #ff006c 0%, #7d2ded 50%, #25b7c4 100%);
   /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, #ff006c 0%, #7d2ded 50%, #25b7c4 100%);
   /* IE10+ */
   background: linear-gradient(to bottom, #ff006c 0%, #7d2ded 50%, #25b7c4 100%);
   /* W3C */
@@ -126,10 +140,6 @@ ol, ul {
   /* IE6-9 */
   width: 100%;
   position: relative;
-  -webkit-transition: all 300ms ease;
-  -moz-transition: all 300ms ease;
-  -ms-transition: all 300ms ease;
-  -o-transition: all 300ms ease;
   transition: all 300ms ease; }
   .slideshow .slide {
     width: 100%;
@@ -147,9 +157,6 @@ ol, ul {
     top: 50%;
     left: 50%;
     -webkit-transform: translateX(-50%) translateY(-50%);
-    -moz-transform: translateX(-50%) translateY(-50%);
-    -ms-transform: translateX(-50%) translateY(-50%);
-    -o-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%); }
     .slideshow .content img {
       width: 100%;
@@ -172,34 +179,22 @@ ol, ul {
     top: 0;
     left: 50%;
     -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    -o-transform: translateX(-50%);
     transform: translateX(-50%);
     opacity: 0; }
   .arrows .down {
     bottom: 0;
     left: 50%;
     -webkit-transform: translateX(-50%) rotate(180deg);
-    -moz-transform: translateX(-50%) rotate(180deg);
-    -ms-transform: translateX(-50%) rotate(180deg);
-    -o-transform: translateX(-50%) rotate(180deg);
     transform: translateX(-50%) rotate(180deg);
     opacity: 0; }
   .arrows .right {
     top: 50%;
     -webkit-transform: translateY(-50%) rotate(90deg);
-    -moz-transform: translateY(-50%) rotate(90deg);
-    -ms-transform: translateY(-50%) rotate(90deg);
-    -o-transform: translateY(-50%) rotate(90deg);
     transform: translateY(-50%) rotate(90deg);
     right: 0; }
   .arrows .left {
     top: 50%;
     -webkit-transform: translateY(-50%) rotate(-90deg);
-    -moz-transform: translateY(-50%) rotate(-90deg);
-    -ms-transform: translateY(-50%) rotate(-90deg);
-    -o-transform: translateY(-50%) rotate(-90deg);
     transform: translateY(-50%) rotate(-90deg);
     left: 0; }
   .arrows polygon {
