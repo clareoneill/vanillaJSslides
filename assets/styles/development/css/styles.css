@@ -160,6 +160,8 @@ ol, ul {
   transform: translateX(-50%) translateY(-50%);
   max-width: 660px;
   padding: 30px; }
+  .content img {
+    max-width: 100%; }
 
 .arrows {
   position: fixed;
