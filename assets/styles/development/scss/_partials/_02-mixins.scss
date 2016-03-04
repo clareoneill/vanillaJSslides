@@ -1,77 +1,8 @@
-@mixin font-face($style-name, $file, $family, $category:"") {
-  $filepath: "../../fonts" + $family + "/" + $file;
-  @font-face {
-    font-family: "#{$style-name}";
-    src: url($filepath + ".eot");
-    src: url($filepath + ".eot?#iefix") format('embedded-opentype'), url($filepath + ".woff") format('woff'), url($filepath + ".ttf")  format('truetype'), url($filepath + ".svg#" + $style-name + "") format('svg');
-  }
-  %#{$style-name} {
-    font: {
-      @if $category != "" {
-          family: "#{$style-name}", #{$category};
-      }
-      @else {
-          family: "#{$style-name}";
-          weight: normal;
-      }
-    }
-  }
-}
-
-@mixin transition($property, $duration, $function) {
-  -webkit-transition: $property $duration $function;
-     -moz-transition: $property $duration $function;
-      -ms-transition: $property $duration $function;
-       -o-transition: $property $duration $function;
-          transition: $property $duration $function;
-}
-
-@mixin transform($transforms) {
-  -webkit-transform: $transforms;
-     -moz-transform: $transforms;
-      -ms-transform: $transforms;
-       -o-transform: $transforms;
-          transform: $transforms;
-}
-
-// rotate
-@mixin rotate ($deg) {
-  @include transform(rotate(#{$deg}deg));
-}
-
-// scale
-@mixin scale($scale) {
-  @include transform(scale($scale));
-} 
-
-// translate
-@mixin translate ($x, $y) {
-  @include transform(translate($x, $y));
-}
-
-// skew
-@mixin skew ($x, $y) {
-  @include transform(skew(#{$x}deg, #{$y}deg));
-}
-
-//transform origin
-@mixin transform-origin ($origin) {
-  -webkit-transform-origin: $origin;
-     -moz-transform-origin: $origin;
-      -ms-transform-origin: $origin;
-       -o-transform-origin: $origin;
-          transform-origin: $origin;
-}
-
 @mixin center($width) {
   width: $width;
   position: absolute;
   top: 50%;
   left: 50%;
-  -webkit-transform: translateX(-50%) translateY(-50%);
-     -moz-transform: translateX(-50%) translateY(-50%);
-      -ms-transform: translateX(-50%) translateY(-50%);
-       -o-transform: translateX(-50%) translateY(-50%);
-          transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
 }
 

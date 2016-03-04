@@ -1,89 +1,74 @@
-.wrap {
+body {
 	overflow: hidden;
 }
 
 .slideshow {
-	background: #ff006c; /* Old browsers */
-	background: -moz-linear-gradient(top,  #ff006c 0%, #7d2ded 50%, #25b7c4 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff006c), color-stop(50%,#7d2ded), color-stop(100%,#25b7c4)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  #ff006c 0%,#7d2ded 50%,#25b7c4 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  #ff006c 0%,#7d2ded 50%,#25b7c4 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  #ff006c 0%,#7d2ded 50%,#25b7c4 100%); /* IE10+ */
-	background: linear-gradient(to bottom,  #ff006c 0%,#7d2ded 50%,#25b7c4 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff006c', endColorstr='#25b7c4',GradientType=0 ); /* IE6-9 */
-	width: 100%;
 	position: relative;
-	@include transition(all, 300ms, ease);
+	background: #ff006c; /* Old browsers */
+	height: 100vh;
+	overflow: hidden;
+	transition: all 300ms ease;
 
-	.slide {
-		width: 100%;
-		position: relative;
-
-		&.active {
-			display: block;
-		}
+	&.loaded {
+		background: -moz-linear-gradient(left,  #ff006c 0%, #7d2ded 50%, #25b7c4 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ff006c), color-stop(50%,#7d2ded), color-stop(100%,#25b7c4)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(left,  #ff006c 0%,#7d2ded 50%,#25b7c4 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(left,  #ff006c 0%,#7d2ded 50%,#25b7c4 100%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(left,  #ff006c 0%,#7d2ded 50%,#25b7c4 100%); /* IE10+ */
+		background: linear-gradient(to right,  #ff006c 0%,#7d2ded 50%,#25b7c4 100%); /* W3C */
 	}
+}
 
-	.content {
-		padding-top: 30px;
-		padding-bottom: 30px;
-		width: 80%;
-		max-width: 600px;
-		margin: 0 auto;
-		@include center(80%);
+.slide {
+	width: 100vw;
+	height: 100vh;
+	position: absolute;
+	left: 0;
+	display: none;
 
-		img {
-			width: 100%;
-			max-width: 100%;
-			margin-bottom: 15px;
-		}
+	&:first-of-type {
+		display: block;
 	}
+}
+
+.content {
+	@include center(80%);
+	max-width: 660px;
+	padding: 30px;
 }
 
 .arrows {
   position: fixed;
-  width: 70px;
-  height: 46px;
+  width: 50px;
+  height: 40px;
 	bottom: 30px;
   right: 30px;
 	
-	svg {
+	span {
+		width: 0;
+		height: 0;
+		border: $arrow-size inset transparent;
 		position: absolute;
 		opacity: .5;
-	}
 
-	svg.active {
-		opacity: 1;
-		cursor: pointer;
-	}
+		&.active {
+			opacity: 1;
+			cursor: pointer;
 
-	.up {
-		top: 0;
-		left: 50%;
-		@include transform( translateX(-50%) );
-		opacity: 0;
-	}
-
-	.down {
-		bottom: 0;
-		left: 50%;
-		@include transform( translateX(-50%) rotate(180deg) );
-		opacity: 0;
-	}
-
-	.right {
-		top: 50%;
-		@include transform( translateY(-50%) rotate(90deg) );
-		right: 0;
+			&:hover,
+			&:focus {
+				opacity: .8;
+			}
+		}
 	}
 
 	.left {
-		top: 50%;
-		@include transform( translateY(-50%) rotate(-90deg) );
-		left: 0;
+		border-right: $arrow-size solid white;
+    left: -$arrow-size;
 	}
 
-	polygon {
-		fill: #fff;
+	.right {
+		border-left: $arrow-size solid white;
+    right: -$arrow-size;
 	}
 }
