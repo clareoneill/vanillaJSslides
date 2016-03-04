@@ -1,0 +1,74 @@
+body {
+	overflow: hidden;
+}
+
+.slideshow {
+	position: relative;
+	background: #ff006c; /* Old browsers */
+	height: 100vh;
+	overflow: hidden;
+	transition: all 300ms ease;
+
+	&.loaded {
+		background: -moz-linear-gradient(left,  #ff006c 0%, #7d2ded 50%, #25b7c4 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ff006c), color-stop(50%,#7d2ded), color-stop(100%,#25b7c4)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(left,  #ff006c 0%,#7d2ded 50%,#25b7c4 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(left,  #ff006c 0%,#7d2ded 50%,#25b7c4 100%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(left,  #ff006c 0%,#7d2ded 50%,#25b7c4 100%); /* IE10+ */
+		background: linear-gradient(to right,  #ff006c 0%,#7d2ded 50%,#25b7c4 100%); /* W3C */
+	}
+}
+
+.slide {
+	width: 100vw;
+	height: 100vh;
+	position: absolute;
+	left: 0;
+	display: none;
+
+	&:first-of-type {
+		display: block;
+	}
+}
+
+.content {
+	@include center(80%);
+	max-width: 660px;
+	padding: 30px;
+}
+
+.arrows {
+  position: fixed;
+  width: 50px;
+  height: 40px;
+	bottom: 30px;
+  right: 30px;
+	
+	span {
+		width: 0;
+		height: 0;
+		border: $arrow-size inset transparent;
+		position: absolute;
+		opacity: .5;
+
+		&.active {
+			opacity: 1;
+			cursor: pointer;
+
+			&:hover,
+			&:focus {
+				opacity: .8;
+			}
+		}
+	}
+
+	.left {
+		border-right: $arrow-size solid white;
+    left: -$arrow-size;
+	}
+
+	.right {
+		border-left: $arrow-size solid white;
+    right: -$arrow-size;
+	}
+}
