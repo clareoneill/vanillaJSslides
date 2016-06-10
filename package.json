@@ -1,5 +1,5 @@
 {
-  "name": "vanillaJSslides",
+  "name": "vanilla-js-slides",
   "version": "1.0.0",
   "description": "personal exploration of using vanilla js + git via the command line to create a responsive html slideshow",
   "main": "index.html",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/clareoneill/vanillaJSslides"
+    "url": "git+https://github.com/clareoneill/vanillaJSslides.git"
   },
   "keywords": [
     "vanilla",
@@ -35,5 +35,6 @@
     "gulp-sass": "^2.2.0",
     "gulp-uglify": "^1.5.3",
     "jshint": "^2.9.1"
-  }
+  },
+  "dependencies": {}
 }
